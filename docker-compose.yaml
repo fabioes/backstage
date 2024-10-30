@@ -1,0 +1,27 @@
+services:
+  backstage:  
+    image: backstage:1.0.0 
+    environment:
+      - PGDATABASE=backstage
+      - POSTGRES_DATABASE=backstage
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+    ports:
+      - 3000:3000
+      - 7007:7007    
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=backstage
+      - PGDATA=/var/lib/postgresql/data
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+volumes:
+  pgdata:
